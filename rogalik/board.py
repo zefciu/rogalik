@@ -1,7 +1,6 @@
 class OutOfBounds(Exception):
     pass
     
-import pdb; pdb.set_trace()
 
 class Board():
     def __init__(self, width, height):
