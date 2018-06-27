@@ -8,6 +8,8 @@ class Board():
         self.mobs[(x, y)] = mob
         mob.board = self
         mob.position = (x, y)
+        
+#def move_to_player(self, pos_player):
 
     def render(self):
         result = []
