@@ -1,6 +1,6 @@
 from readchar import readkey
 
-from rogalik.board import Board
+from rogalik.board import Board, OutOfBounds
 from rogalik.player import Player
 
 
@@ -25,7 +25,11 @@ def play():
         key = readkey()
         vector = DIRECTIONS.get(key)
         if vector is not None:
-            board.move(player.position, vector)
+            try:
+                board.move(player.position, vector)
+            except OutOfBounds:
+                pass
+
 
 
 if __name__ == '__main__':
