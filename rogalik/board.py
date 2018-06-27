@@ -1,3 +1,8 @@
+class OutOfBounds(Exception):
+    pass
+    
+import pdb; pdb.set_trace()
+
 class Board():
     def __init__(self, width, height):
         self.width = width
@@ -24,9 +29,18 @@ class Board():
 
     def move(self, initial, vector):
         mob = self.mobs[initial]
-        del self.mobs[initial]
         x, y = initial
         vx, vy = vector
-        target = (x + vx), (y + vy)
+        target_x, target_y = target = (x + vx), (y + vy)
+        if (
+            self.width <= target_x or
+            target_x < 0 or
+            self.height <= target_y or
+            target_y < 0
+        ):
+            raise OutOfBounds()
+        del self.mobs[initial]
         self.mobs[target] = mob
         mob.position = target
+        
+            
