@@ -2,7 +2,8 @@ from readchar import readkey
 
 from rogalik.board import Board, OutOfBounds
 from rogalik.player import Player
-
+from rogalik.monster import Orc
+from random import randint
 
 CLEAR_SCREEN = '\x1b[3;J\x1b[H\x1b[2J'
 CTRL_C = '\x03'
@@ -18,6 +19,8 @@ DIRECTIONS = {
 def play():
     board = Board(20, 20)
     player = Player()
+    monster=Orc()
+    board.add_mob(monster,randint(0,20),randint(0,20))
     board.add_mob(player, 10, 10)
     while True:
         print(CLEAR_SCREEN)
@@ -35,7 +38,8 @@ def play():
                 board.move(player.position, vector)
             except OutOfBounds:
                 pass
-
+        vector=monster.move_to_player(player.position)
+        board.move(monster.position, vector)        
 
 
 if __name__ == '__main__':
